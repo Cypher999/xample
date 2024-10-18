@@ -1,14 +1,14 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
 const Sequelize = require('sequelize');
 const process = require('process');
+const path = require('path');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 let config = require(__dirname + '/../../../config/config.json')[env];
 const db = {};
-config['dialectModule']=require('mysql2');
+config['dialectModule'] = require('mysql2');
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -16,6 +16,8 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+// Use fs to handle dynamic loading if not using Webpack
+const fs = require('fs');
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -31,6 +33,7 @@ fs
     db[model.name] = model;
   });
 
+// Associate models if association is defined
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -38,6 +41,5 @@ Object.keys(db).forEach(modelName => {
 });
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 module.exports = db;

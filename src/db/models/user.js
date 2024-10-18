@@ -5,15 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     static associate(models) {
-        user.hasMany(models.article,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true});
-        user.hasMany(models.article_images,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true});
-        user.hasMany(models.ebook,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})
-        user.hasOne(models.staff,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})
-        user.hasMany(models.login_session,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})
-        user.hasMany(models.comment,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})
-        user.hasMany(models.reply,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})
-        user.hasMany(models.notification,{foreignKey:'user_from',onDelete:'cascade',onUpdate:'cascade',hooks:true})
-        user.hasMany(models.notification,{foreignKey:'user_to',onDelete:'cascade',onUpdate:'cascade',hooks:true})
+        // user.hasMany(models.ebook,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})
+        // user.hasOne(models.staff,{foreignKey:'user_id',onDelete:'cascade',onUpdate:'cascade',hooks:true})       
     }
   }
   user.init({
