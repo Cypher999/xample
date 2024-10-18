@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "db_nextjs",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "migrationPath":"./src/db/migrations",
+    "seederPath":"./src/db/seeders"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "db_nextjs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "54nd1mhd!rv4N",
+    "database": "db_nextjs",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "migrationPath":"./src/db/migrations",
+    "seederPath":"./src/db/seeders"
+  }
+}

@@ -6,11 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-migration": "sequelize migration:generate",
+    "migrate": "npx sequelize db:migrate",
+    "create-model": "npx sequelize-cli model:generate",
+    "create-seeder": "npx sequelize-cli seed:generate",
+    "seed-all": "npx sequelize-cli db:seed:all"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.11.3",
+    "next": "14.2.15",
+    "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.15"
+    "sequelize": "^6.37.4"
   }
 }
