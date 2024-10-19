@@ -5,15 +5,16 @@ export async function GET(req, res) {
   
 }
 export async function POST(req, res) {
-    console.log(models);
-    const { username, password } = req.body;
+    // console.log(await req.formData());
+    const reqBody=await req.formData();
+    console.log(reqBody.get('username'))
     try {
-      const cekUser = await models.user.findOne({ where: { username } });
+      const cekUser = await models.User.findOne({ where: { username:reqBody.get('username') } });
       if (!cekUser) {
         return Response.json({ message: 'Invalid credentials' },{status:404});
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(reqBody.get('password'), user.password);
       if (!isMatch) {
         return Response.json({ message: 'Invalid credentials' },{status:404});
       }

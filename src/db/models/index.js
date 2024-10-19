@@ -2,8 +2,6 @@
 
 const Sequelize = require('sequelize');
 const process = require('process');
-const path = require('path');
-const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 let config = require(__dirname + '/../../../config/config.json')[env];
 const db = {};
@@ -16,24 +14,17 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-// Use fs to handle dynamic loading if not using Webpack
-const fs = require('fs');
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
+// Manually import each model
+const User = require('./user')(sequelize, Sequelize.DataTypes);
+const Session = require('./session')(sequelize, Sequelize.DataTypes);
+// Add more models as needed
 
-// Associate models if association is defined
+// Register models in the db object
+db.User = User;
+db.Session = Session;
+// Add other models as needed
+
+// Set up associations if applicable
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

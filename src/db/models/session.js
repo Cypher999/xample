@@ -21,23 +21,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     user_id: {
       type:DataTypes.INTEGER,
-      autoIncrement:true,
-      primaryKey:true
     },
     ip: {
       type:DataTypes.STRING(16),
-      autoIncrement:true,
-      primaryKey:true
     },
     user_agent: {
       type:DataTypes.STRING(100),
-      autoIncrement:true,
-      primaryKey:true
     },
     date_created: {
       type:DataTypes.DATE,
-      autoIncrement:true,
-      primaryKey:true
     }
   }, {
     sequelize,

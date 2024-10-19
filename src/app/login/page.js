@@ -7,13 +7,12 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let body=new FormData();
+    body.append('username',username);
+    body.append('password',password)
     const res = await fetch('/api/auth/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
+      body,
     });
     console.log(res)
   };
